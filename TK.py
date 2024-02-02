@@ -1,24 +1,31 @@
 from tkinter import *
 from PIL import Image, ImageTk
 import os
-
+class Root_Img(Toplevel):
+    def __init__(self,name_file):
+        super().__init__()
+        self.geometry(f'{width}x950')
+        self.title('Своя игра')
+        self['bg']= 'steelblue1'
+        pil_image = Image.open(name_file).resize((400,400))
+        self.image = ImageTk.PhotoImage(pil_image)
+        image_sprite = Label(self, image=self.image,bg='steelblue1')
+        image_sprite.pack(expand = True,fill=BOTH)
+class Root_Text(Tk):
+    def __init__(self,text):
+        super().__init__()
+        self.geometry(f'{width}x950')
+        self.title('Своя игра')
+        self['bg']= 'steelblue1'
+        sprite = Label(self, text = text,bg='steelblue1',font = ('Consolas', 45,'bold'),relief="raised",wraplength=1500)
+        sprite.pack(expand = True, fill=BOTH)
+        
 def create_root(i):
-    root1 = Tk()
-    root1.title('Своя игра')
-    root1.geometry(f'{width}x950')
-    root1['bg']= 'steelblue1'
-    if line[i][0] == '/':
-        label_root = Label(root1)
+    if line[i][0] == '/':        
         file = line[i][1:-1]
-        img_file = Image.open(file)
-        img = ImageTk.PhotoImage(image=img_file)
-        print(file)
-        label_root.image=img
-        label_root['image']=img #проблемная строка
-        label_root.pack(expand = True, fill=BOTH) 
+        root1 = Root_Img(file)
     else:
-        label_root = Label(root1, text=line[i], bg='steelblue1',font = ('Consolas', 45,'bold'),borderwidth=5,relief="raised",wraplength=1500) 
-        label_root.pack(expand = True, fill=BOTH)
+        root1 = Root_Text(line[i])
     root1.mainloop()
 #Label1
 def command_button11():
