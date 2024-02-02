@@ -8,15 +8,12 @@ def create_root(i):
     root1.geometry(f'{width}x950')
     root1['bg']= 'steelblue1'
     if line[i][0] == '/':
-        file = os.path.abspath(line[i][1:-1])
-        file = Image.open(file).resize((100,100))
-        img = ImageTk.PhotoImage(file = file)
-        # img = PhotoImage(file = file)
-        # cnv = Canvas(root1)
-        # cnv.pack(fill=BOTH)
-        # cnv.create_image(0, 0, image=img, anchor="nw")
-        label_root = Label(root1,image=img)
-        label_root.pack() #(expand = True, fill=BOTH) 
+        label_root = Label(root1)
+        file = line[i][1:-1]
+        img_file = Image.open(file).resize((400,400))
+        img = ImageTk.PhotoImage(image=img_file)
+        label_root.image=img
+        label_root.pack(expand = True, fill=BOTH) 
     else:
         label_root = Label(root1, text=line[i], bg='steelblue1',font = ('Consolas', 45,'bold'),borderwidth=5,relief="raised",wraplength=1500) 
         label_root.pack(expand = True, fill=BOTH)
