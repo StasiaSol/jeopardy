@@ -10,9 +10,11 @@ def create_root(i):
     if line[i][0] == '/':
         label_root = Label(root1)
         file = line[i][1:-1]
-        img_file = Image.open(file).resize((400,400))
+        img_file = Image.open(file)
         img = ImageTk.PhotoImage(image=img_file)
+        print(file)
         label_root.image=img
+        label_root['image']=img #проблемная строка
         label_root.pack(expand = True, fill=BOTH) 
     else:
         label_root = Label(root1, text=line[i], bg='steelblue1',font = ('Consolas', 45,'bold'),borderwidth=5,relief="raised",wraplength=1500) 
