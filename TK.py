@@ -7,7 +7,7 @@ class Root_Img(Toplevel):
         self.geometry(f'{width}x950')
         self.title('Своя игра')
         self['bg']= 'steelblue1'
-        pil_image = Image.open(name_file).resize((400,400))
+        pil_image = Image.open(name_file).resize((800,400))
         self.image = ImageTk.PhotoImage(pil_image)
         image_sprite = Label(self, image=self.image,bg='steelblue1')
         image_sprite.pack(expand = True,fill=BOTH)
